@@ -71,14 +71,14 @@ con.connect(function (err, result) {
           });
 
         } else {
-          console.log(
-            `There are no more ${result[productId - 1].product_name} left in stock!\nSorry!\nWe will restock next time you come back!`);
-          sql = `UPDATE products SET stock_quantity = 10 WHERE id = ${productId}`;
-          con.query(sql, function (err, result) {
-            if (err) throw err;
-          });
+            console.log(
+              `There are no more ${result[productId - 1].product_name} left in stock!\nSorry!\nWe will restock next time you come back!`);
+            sql = `UPDATE products SET stock_quantity = 10 WHERE id = ${productId}`;
+            con.query(sql, function (err, result) {
+              if (err) throw err;
+            });
+          }
         }
-      }
+      });
     });
   });
-});
