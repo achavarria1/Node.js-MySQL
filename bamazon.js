@@ -61,16 +61,17 @@ con.connect(function (err, result) {
             if (err) throw err;
           });
 
+
         } else if (result[productId - 1].stock_quantity > 0) {
-          console.log(
-            `There are only ${result[productId - 1].stock_quantity} left in stock!\n Here they are:\nReceipt: ${result[productId - 1].product_name} x (${result[productId - 1].stock_quantity}) = $${result[productId - 1].stock_quantity * result[productId - 1].price}`);
-
-          sql = `UPDATE products SET stock_quantity = 0 WHERE id = ${productId}`;
-          con.query(sql, function (err, result) {
-            if (err) throw err;
-          });
-
-        } else {
+            console.log(
+              `There are only ${result[productId - 1].stock_quantity} left in stock!\n Here they are:\nReceipt: ${result[productId - 1].product_name} x (${result[productId - 1].stock_quantity}) = $${result[productId - 1].stock_quantity * result[productId - 1].price}`);
+  
+            sql = `UPDATE products SET stock_quantity = 0 WHERE id = ${productId}`;
+            con.query(sql, function (err, result) {
+              if (err) throw err;
+            });
+  
+          } else {
             console.log(
               `There are no more ${result[productId - 1].product_name} left in stock!\nSorry!\nWe will restock next time you come back!`);
             sql = `UPDATE products SET stock_quantity = 10 WHERE id = ${productId}`;
@@ -82,3 +83,4 @@ con.connect(function (err, result) {
       });
     });
   });
+
